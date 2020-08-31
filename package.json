@@ -1,0 +1,23 @@
+{
+  "name": "profesional_js",
+  "version": "1.0.0",
+  "description": "Proyecto de Curso profesional js",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisfbello/profesionaljs.git"
+  },
+  "keywords": [],
+  "author": "LuisBello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luisfbello/profesionaljs/issues"
+  },
+  "homepage": "https://github.com/luisfbello/profesionaljs#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
