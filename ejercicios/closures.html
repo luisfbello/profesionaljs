@@ -8,13 +8,62 @@
     <p><em>Abre la consola</em></p>
 
     <script>
-        let color ="green"
+        // llamar a una funcion que se llama a si misma imediata mente == IIFE
+        // (function (){
+        //     let color ="green"
 
-        function printColor(){
-            console.log(color)
-        }
+        //     function printColor(){
+        //         console.log(color)
+        //     }
 
-        printColor()
+        //     printColor()
+        //     })()
+
+
+            // function makeColorPrinter(color){
+            //     let colorMessage=`the color is ${color}` 
+            //     return function (){
+            //         console.log(colorMessage)
+            //     }
+            // }
+
+
+            // let printerColorGreen=makeColorPrinter("green")
+
+            // console.log(printerColorGreen())
+
+
+            function makeCounter(n){
+                let count=n
+                return {
+                    increase:function(){
+                        return count = count + 1 
+                    },
+                    decrease:function(){
+                        let j=count
+                        for (let i = 0; i < j; i++) {
+                           if (count == 0) {
+                            console.log("Termino cuenta Regresiva")
+                           }else{
+                            console.log(count--)
+                           }
+                        }
+                    },
+                    getCount:function(){
+                        return count
+                    }
+                }
+            }
+
+            let counter= makeCounter(7)
+
+            console.log(counter.getCount())
+            console.log(counter.increase())
+            console.log(counter.decrease())
+            
+
+
+
     </script>
   </body>
 </html>

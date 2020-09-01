@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>this</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+
+    <script>
+    // this en el global scope
+    console.log(`this: ${this}`)
+    // this dentro del scope de una funcion
+    function QuienEsThis() {
+        return this
+    }
+    console.log(`Quien ES this strict: ${QuienEsThis()}`)
+    // this dentro del scope de una funcion strict
+    
+    function QuienEsThisStric() {
+        "use strict";
+        return this
+    }
+    console.log(`Quien ES this strict: ${QuienEsThisStric()}`)
+
+
+    // this en el contexto de un objeto 
+
+    const persona={
+        name:"Luis",
+
+        saludar:function(){
+            console.log(`Hola Soy ${this.name}`)
+        }
+    }
+
+    persona.saludar();
+
+    // this en el contexto de una clase
+    function Persona(name) {
+        this.name=name
+    }
+
+    Persona.prototype.saludar=function(){
+        console.log(`Hola Soy ${this.name}`)
+    }
+
+    const luis =new Persona("luis Francisco")
+    luis.saludar()
+
+    </script>
+  </body>
+</html>

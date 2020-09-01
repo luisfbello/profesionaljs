@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>prototype</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+
+    <script>
+        // objeto comun y corriente
+        // const zelda={
+        //     name:"Zelda",
+
+        //     saludar:function(){
+        //         console.log(`Hola soy ${this.name}`)
+        //     }
+        // }
+
+        // zelda.saludar()
+
+        // const Link={
+        //     name:"Link",
+
+        //     saludar:function(){
+        //         console.log(`Hola soy ${this.name}`)
+        //     }
+        // }
+
+        // Link.saludar()
+
+        // se crea funcion a la que se le denomina construntor y que es como una "clase"
+
+        function Hero(nombre) {
+            this.nombre=nombre,
+            this.saludar
+        }
+        Hero.prototype.saludar=function(){
+            console.log(`Hola soy ${this.nombre}`)
+        }
+
+        const zelda= new Hero("zelda")
+        const link= new Hero("Link")
+
+        zelda.saludar()
+        link.saludar()
+
+
+
+
+    </script>
+  </body>
+</html>
