@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Logica</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+
+    <script>
+
+        const inicial=Array('a','b','c');
+        let combinacion=Array();
+        const Final=Array();
+
+    function combinar(params) {
+        let arrayinit=params
+        let combinatoria=Array();
+
+        for (let i = 0; i <= params.length; i++) {
+            let aleatorio=Math.floor(Math.random()*(params.length-0 + 1)+0);
+            const element = arrayinit[aleatorio];
+
+        
+            if(combinatoria[i] == null){
+                if (combinatoria[i] != element) {
+                    combinatoria.push(element);
+                }
+            }
+
+            
+        }
+
+        if (combinatoria.length==params.length) {
+            const
+            return combinatoria
+        }
+        
+    }
+    
+    
+
+    console.log(combinacion=combinar(inicial))
+       
+
+
+    </script>
+  </body>
+</html>
