@@ -4,7 +4,7 @@
   "description": "Proyecto de Curso profesional js",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.js ejercicios/**/*.html"
+    "start": "parcel index.html ejercicios/**/*.html"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   },
   "browserslist": [
     "last 1 Chrome version"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  }
 }

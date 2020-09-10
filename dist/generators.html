@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Generators</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+
+    
+
+    <ul id="movies"></ul>
+
+    <script>// se genera el generador con un * pegado al function
+function* simpleGenerator() {
+  console.log("Generator start"); // yield es la instrucción que regresa un valor cada vez que llamamos a next y detiene la ejecución del generador.
+
+  yield 1;
+  yield 2;
+  yield 3;
+  console.log("Generator end");
+}
+
+const g = simpleGenerator();
+
+function* idMaker() {
+  let id = 1;
+
+  while (true) {
+    yield id;
+    id++;
+  }
+}
+
+const MakerGenerador = idMaker();
+
+function* fibonachi() {
+  let a = 1;
+  let b = 1;
+
+  while (true) {
+    const nextNumber = a + b;
+    yield a;
+    a = b;
+    b = nextNumber;
+  }
+}
+
+const fi = fibonachi();</script>
+  </body>
+</html>
