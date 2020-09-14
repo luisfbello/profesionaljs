@@ -118,14 +118,88 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"ejercicios/typescript/index.ts":[function(require,module,exports) {
-console.log("Hola typescript");
+/// tipos de datos typescript
+var bool = true;
+bool = false;
+var num = 5;
+var num2 = 6;
+var nombre = "estrella"; // arreglos
+
+var numArray = [];
+numArray = [1, 2, 3, 4];
+numArray.push(5);
+var stringArray = [];
+stringArray = ['hola', 'con', 'los'];
+stringArray.push('arrays'); // enum 
+
+var Color;
+
+(function (Color) {
+  Color["rojo"] = "rojo";
+  Color["amarillo"] = "amarillo";
+  Color["azul"] = "azul";
+})(Color || (Color = {}));
+
+console.log(Color.rojo);
+console.log("Hola typescript"); // tipo Any
+
+var cualquiera = 10;
+cualquiera = {
+  nombre: "luis"
+}; // tipo objeto
+
+var variableObjeto = {
+  nombre: "luis"
+}; // tipar funciones 
 
 function add(a, b) {
   return a + b;
 }
 
-var sume = add(3, 4);
-console.log(sume);
+var suma = add(4, 5); //funcion que retorna otra funcion
+
+function createAdder(a) {
+  return function (b) {
+    return b + a;
+  };
+} // argumentos no obligatorios
+
+
+function nameComplet(firstName, LastName) {
+  return firstName + " " + LastName;
+}
+
+var persona = nameComplet('luis'); // argumentos por defecto
+
+function nameComplet2(firstName, LastName) {
+  if (LastName === void 0) {
+    LastName = "Doe";
+  }
+
+  return firstName + " " + LastName;
+}
+
+var persona2 = nameComplet('luis');
+var addFour = createAdder(4);
+var fourSix = addFour(6);
+var rect = {
+  ancho: 5,
+  alto: 10,
+  color: Color.azul
+};
+
+function area(r) {
+  return r.alto * r.ancho;
+}
+
+var areaRect = area(rect);
+
+rect.toString = function () {
+  return this.color ? "Es un rectangulo " + this.color : "Es un rectangulo";
+};
+
+console.log(areaRect);
+console.log(rect.toString());
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -154,7 +228,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51968" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55370" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

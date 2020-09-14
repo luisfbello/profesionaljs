@@ -125,52 +125,55 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-function MediaPlayer(config) {
-  this.media = config.el;
-  this.plugins = config.plugins || [];
+class MediaPlayer {
+  constructor(config) {
+    this.media = config.el;
+    this.plugins = config.plugins || [];
 
-  this._initPlugins();
-}
+    this._initPlugins();
+  }
 
-MediaPlayer.prototype._initPlugins = function () {
-  const player = {
-    play: () => this.play(),
-    pause: () => this.pause(),
-    media: this.media,
+  _initPlugins() {
+    const player = {
+      play: () => this.play(),
+      pause: () => this.pause(),
+      media: this.media,
 
-    get muted() {
-      return this.media.muted;
-    },
+      get muted() {
+        return this.media.muted;
+      },
 
-    set muted(val) {
-      this.media.muted = val;
+      set muted(val) {
+        this.media.muted = val;
+      }
+
+    };
+    this.plugins.forEach(plugin => {
+      plugin.run(player);
+    });
+  }
+
+  play() {
+    if (this.media.paused) {
+      this.media.play();
+    } else {
+      this.media.pause();
     }
+  }
 
-  };
-  this.plugins.forEach(plugin => {
-    plugin.run(player);
-  });
-};
-
-MediaPlayer.prototype.play = function () {
-  if (this.media.paused) {
-    this.media.play();
-  } else {
+  pause() {
     this.media.pause();
   }
-};
 
-MediaPlayer.prototype.pause = function () {
-  this.media.pause();
-};
-
-MediaPlayer.prototype.mute = function () {
-  if (this.media.muted) {
-    this.media.muted = false;
-  } else {
-    this.media.muted = true;
+  mute() {
+    if (this.media.muted) {
+      this.media.muted = false;
+    } else {
+      this.media.muted = true;
+    }
   }
-}; // MediaPlayer.prototype.unmute= function(){
+
+} // MediaPlayer.prototype.unmute= function(){
 //     this.media.muted =false;
 // }
 
@@ -197,54 +200,55 @@ autoPlay.prototype.run = function (player) {
 
 var _default = autoPlay;
 exports.default = _default;
-},{}],"assests/plugins/autoPause.js":[function(require,module,exports) {
+},{}],"assests/plugins/autoPause.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
 
-class autoPause {
-  constructor() {
+var autoPause =
+/** @class */
+function () {
+  function autoPause() {
     this.threshold = 0.25, this.handlerIntersection = this.handlerIntersection.bind(this);
     this.handlerVisivilityCahnge = this.handlerVisivilityCahnge.bind(this);
   }
 
-  run(player) {
+  autoPause.prototype.run = function (player) {
     this.player = player;
-    const observer = new IntersectionObserver(this.handlerIntersection, {
+    var observer = new IntersectionObserver(this.handlerIntersection, {
       threshold: this.threshold
     });
     observer.observe(this.player.media);
     document.addEventListener("visibilitychange", this.handlerVisivilityCahnge);
-  }
+  };
 
-  handlerIntersection(entries) {
-    const entry = entries[0];
-    const visible = entry.intersectionRatio >= this.threshold;
-
-    if (visible) {
-      this.player.play();
-    } else {
-      this.player.pause();
-    }
-  }
-
-  handlerVisivilityCahnge() {
-    const visible = document.visibilityState === "visible";
+  autoPause.prototype.handlerIntersection = function (entries) {
+    var entry = entries[0];
+    var visible = entry.intersectionRatio >= this.threshold;
 
     if (visible) {
       this.player.play();
     } else {
       this.player.pause();
     }
-  }
+  };
 
-}
+  autoPause.prototype.handlerVisivilityCahnge = function () {
+    var visible = document.visibilityState === "visible";
 
-var _default = autoPause;
-exports.default = _default;
+    if (visible) {
+      this.player.play();
+    } else {
+      this.player.pause();
+    }
+  };
+
+  return autoPause;
+}();
+
+exports.default = autoPause;
 },{}],"assests/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -252,7 +256,7 @@ var _mediaPlayer = _interopRequireDefault(require("./mediaPlayer.js"));
 
 var _autoPlay = _interopRequireDefault(require("./plugins/autoPlay.js"));
 
-var _autoPause = _interopRequireDefault(require("./plugins/autoPause.js"));
+var _autoPause = _interopRequireDefault(require("./plugins/autoPause.ts"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -282,7 +286,7 @@ if ('serviceWorker' in navigator) {
     console.log(error.message);
   });
 } // unMuteButton.onclick = () => player.unmute()
-},{"./mediaPlayer.js":"assests/mediaPlayer.js","./plugins/autoPlay.js":"assests/plugins/autoPlay.js","./plugins/autoPause.js":"assests/plugins/autoPause.js","C:\\Users\\luisf\\OneDrive\\Escritorio\\Carrera javascript\\profesional_js\\sw.js":[["sw.js","sw.js"],"sw.js.map","sw.js"]}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./mediaPlayer.js":"assests/mediaPlayer.js","./plugins/autoPlay.js":"assests/plugins/autoPlay.js","./plugins/autoPause.ts":"assests/plugins/autoPause.ts","C:\\Users\\luisf\\OneDrive\\Escritorio\\Carrera javascript\\profesional_js\\sw.js":[["sw.js","sw.js"],"sw.js.map","sw.js"]}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -310,7 +314,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51968" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55370" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
