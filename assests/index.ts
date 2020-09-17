@@ -1,6 +1,9 @@
-import MediaPlayer from "./mediaPlayer.js"
-import AutoPlay from "./plugins/autoPlay.js"
-import AutoPause from "./plugins/autoPause.ts"
+import MediaPlayer from "./mediaPlayer"
+import AutoPlay from "./plugins/autoPlay"
+import AutoPause from "./plugins/autoPause"
+import Ads from "./plugins/Ads"
+import { resolve } from "path"
+
 
 const video = document.querySelector("video")
 const button= document.querySelector("button")
@@ -11,15 +14,17 @@ const player = new MediaPlayer({ el: video,plugins:
     [
     new AutoPlay(),
     new AutoPause(),
+    new Ads()
 ] })
 button.onclick = () =>{
     const playerVideoPromise=player.play()
     if (playerVideoPromise !== undefined ) {
-        playerVideoPromise.then(_=>{
-        })
-        .catch(error=>{
+        try{
+
+        }
+        catch(error: any){
             console.log(error)
-        })
+        }
     }
 }
 MuteButton.onclick = () => player.mute()

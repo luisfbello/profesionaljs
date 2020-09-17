@@ -2,7 +2,7 @@
   "name": "profesional_js",
   "version": "1.0.0",
   "description": "Proyecto de Curso profesional js",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "start": "parcel index.html ejercicios/**/*.html"
   },

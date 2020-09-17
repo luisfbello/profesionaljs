@@ -9,7 +9,7 @@ class autoPause{
         this.handlerVisivilityCahnge = this.handlerVisivilityCahnge.bind(this)
     }
 
-    run(player){
+    run(player: MediaPlayer){
 
         this.player=player
 
